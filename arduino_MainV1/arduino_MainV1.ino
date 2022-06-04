@@ -26,11 +26,11 @@ ros::Publisher ARDUINO_LOG_node("ARDUINO_LOG_node", &str_ARDUINO_LOG_msg);
 
 std_msgs::String str_POSITION_msg;
 ros::Publisher POSITION_node("POSITION_node", &str_POSITION_msg);
-int addStringToMsgLength;
+
 char *addStringToMsgBuffer;
+int addStringToMsgLength;
 uint16_t left_arm_position;
 uint16_t right_arm_position;
-unsigned int actualAngle;
 void publishLPOSITION()
 {
   addStringToMsg(str_POSITION_msg,"req");
@@ -43,6 +43,7 @@ void publishLARDUINO_LOG(String textLog)
 }
 void  addStringToMsg(std_msgs::String str,String input)
 {
+  free(addStringToMsgBuffer);
   addStringToMsgLength = input.length();
   addStringToMsgBuffer = new char[addStringToMsgLength];
   input.toCharArray(addStringToMsgBuffer, addStringToMsgLength);
@@ -50,21 +51,21 @@ void  addStringToMsg(std_msgs::String str,String input)
 }
 void publishLXL()
 {
+  
   left_arm_position = arm.read_left_arm_position();
   addStringToMsg(str_LXL_msg,String(left_arm_position));
   LXL_node.publish( &str_LXL_msg);
 }
 void publishLXR()
 {
-
+  
   right_arm_position = arm.read_right_arm_position();
   addStringToMsg(str_LXR_msg,String(right_arm_position));
   LXR_node.publish( &str_LXR_msg);
 }
 void publishAngle()
 {
-  actualAngle = motors.getAngle();
-  addStringToMsg(str_ANGLE_msg,String(actualAngle));
+  addStringToMsg(str_ANGLE_msg,String(motors.getAngle()));
   ANGLE_node.publish( &str_ANGLE_msg);
 }
 /**********************ROS SUBSCRIBERS**********************/
@@ -96,10 +97,8 @@ ros::Subscriber<sensor_msgs::Joy> subJoyCommandArmRigth("JoyCommandArmRigth", jo
 ros::Subscriber<sensor_msgs::Joy> subJoyGotoAngleCommand("JoyGotoAngleCommand", joyGotoAngleCommand );
 
 /****************PROG_GOTOANGLE****************/
-int angleRequest;
 void gotoAngleCommand(const std_msgs::String& msg) {
-  angleRequest = atoi(msg.data);
-  motors.gotoAngle(angle);
+  motors.gotoAngle(atoi(msg.data));
 }
 void resetAngleCommand(const std_msgs::String& msg) {
   motors.resetAngle();
