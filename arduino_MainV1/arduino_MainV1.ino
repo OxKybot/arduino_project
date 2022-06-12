@@ -43,7 +43,6 @@ void publishLARDUINO_LOG(String textLog)
 }
 void  addStringToMsg(std_msgs::String str,String input)
 {
-  free(addStringToMsgBuffer);
   addStringToMsgLength = input.length();
   addStringToMsgBuffer = new char[addStringToMsgLength];
   input.toCharArray(addStringToMsgBuffer, addStringToMsgLength);
