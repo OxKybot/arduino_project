@@ -137,7 +137,7 @@ ros::Subscriber<std_msgs::Int16> subMoveRightArmCommand("MoverightArm", moveRigh
 /****************************************************/
 
 /**********************ROS SERVICES**********************/
-//ros::ServiceClient<std_msgs::String, std_msgs::String> pose_client("pose_container_service");
+//ros::ServiceClient<std_msgs::String, geometry_msgs::PoseStamped> pose_client("pose_container_service");
 
 /****************************************************/
 void breakAll()
