@@ -68,10 +68,10 @@ void publishAngle()
   ANGLE_node.publish( &str_ANGLE_msg);
 }
 /**********************ROS SUBSCRIBERS**********************/
-void getPositionResponse( const std_msgs::String& slamPose) {
+void getPositionResponse( const geometry_msgs::PoseStamped& slamPose) {
   motors.setPosition(slamPose);
 }
-ros::Subscriber<std_msgs::String> subGetPositionCommand("get_position_response", getPositionResponse );
+ros::Subscriber<geometry_msgs::PoseStamped> subGetPositionCommand("get_position_response", getPositionResponse );
 /****************JOYSTICK****************/
 
 void joyCommandMotorCb( const sensor_msgs::Joy& joy) {
