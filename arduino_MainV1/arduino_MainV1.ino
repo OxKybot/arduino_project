@@ -172,12 +172,12 @@ void setup() {
   nh.advertise(POSITION_node);
   logger = Logger(&ARDUINO_LOG_node, str_ARDUINO_LOG_msg);
   motors = OxKybot_MOTOR_command();
-  motors.setLogger(logger);
   motors.init();
+  motors.setLogger(logger);
   motors.setTimer(&securityTimerMotor);
   arm = OxKybot_ARM_command();
-  arm.setLogger(logger);
   arm.init();
+  arm.setLogger(logger);
   joystick = OxKybot_JOYSTICK_command();
   joystick.set_motors(motors);
   joystick.set_arm(arm);
@@ -189,4 +189,5 @@ void loop()
   wdt_reset();
   nh.spinOnce();
   securityTimerMotor.loop();
+  motors.loop();
 }
