@@ -10,6 +10,18 @@ Logger logger;
 
 ros::NodeHandle  nh;
 
+enum motorCommandValue{
+  GO_FORWARD_FAST,
+  GO_FORWARD_SLOW,
+  GO_BACKWARD_FAST,
+  GO_BACKWARD_SLOW,
+  TURN_LEFT_FAST,
+  TURN_LEFT_SLOW,
+  TURN_RIGHT_FAST,
+  TURN_RIGHT_SLOW,
+  BREAK_ALL
+  };
+  
 /**********************ROS PUBLISHERS**********************/
 
 std_msgs::String str_LXL_msg;
@@ -111,7 +123,7 @@ ros::Subscriber<std_msgs::String> subGotoAngleCommand("GotoAngleCommand", gotoAn
 ros::Subscriber<std_msgs::String> subResetAngleCommand("ResetAngleCommand", resetAngleCommand );
 
 /****************PROG_GOTOPOSITION****************/
-String goToPositionXRequest;
+String goToPositionXRequest;//TODO use enum
 void goToPositionX(const std_msgs::String& msg) {
   goToPositionXRequest = String(msg.data);
   if(goToPositionXRequest.equals("Go FORWARD"))
