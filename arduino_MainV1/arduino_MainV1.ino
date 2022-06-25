@@ -148,7 +148,7 @@ ros::Subscriber<std_msgs::Int16> subMoveRightArmCommand("MoverightArm", moveRigh
 void breakAll()
 {
   motors.motorBrake();
-  logger.publish_arduino_log("OxKyduino not happy, OxKyjet he doesn't answer");
+  logger.publish_arduino_log("OxKyduino not happy, OxKyjet doesn't answer");
 }
 TimeoutCallback securityTimerMotor = TimeoutCallback(STEP_DURATION,breakAll);
 
