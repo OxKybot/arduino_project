@@ -155,9 +155,8 @@ void setup() {
   Serial.begin(57600);
   wdt_enable(WDTO_2S);
   
-  //Ros nodes
   nh.initNode();
-  //  nh.serviceClient(pose_client);
+  //  nh.serviceClient(pose_client);//FIXME why do the service don't work in rosserial_arduino ???
   nh.subscribe(subJoyCommandMotor);
   nh.subscribe(subJoyCommandMotorSlow);
   nh.subscribe(subJoyCommandArmLeft);
@@ -169,21 +168,24 @@ void setup() {
   nh.subscribe(subGotoPositionCommand);
   nh.subscribe(subMoveLeftArmCommand);
   nh.subscribe(subMoveRightArmCommand);
-
   
   nh.advertise(ANGLE_node);
   nh.advertise(LXL_node);
   nh.advertise(LXR_node);
   nh.advertise(ARDUINO_LOG_node);
   nh.advertise(POSITION_node);
+  
   logger = Logger(&ARDUINO_LOG_node, str_ARDUINO_LOG_msg);
+  
   motors = OxKybot_MOTOR_command();
   motors.init();
   motors.setLogger(logger);
   motors.setTimer(&securityTimerMotor);
+  
   arm = OxKybot_ARM_command();
   arm.init();
   arm.setLogger(logger);
+  
   joystick = OxKybot_JOYSTICK_command();
   joystick.set_motors(motors);
   joystick.set_arm(arm);
