@@ -116,11 +116,11 @@ void goToPositionX(const std_msgs::String& msg) {
   goToPositionXRequest = String(msg.data);
   if(goToPositionXRequest.equals("Go FORWARD"))
   {
-    motors.forward(200,0);
+    motors.forward(FAST,0);
   }
   if(goToPositionXRequest.equals("Go BACWARD"))
   {
-    motors.backward(200,0);
+    motors.backward(FAST,0);
   }
   if(goToPositionXRequest.equals("STOP"))
   {
