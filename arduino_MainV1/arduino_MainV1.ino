@@ -69,15 +69,16 @@ void publishLXL()
 }
 void publishLXR()
 {
-  
   right_arm_position = arm.read_right_arm_position();
   addStringToMsg(str_LXR_msg,String(right_arm_position));
   LXR_node.publish( &str_LXR_msg);
 }
 void publishAngle()
 {
-  addStringToMsg(str_ANGLE_msg,"angle = "+String(motors.getAngle()));
-  ANGLE_node.publish( &str_ANGLE_msg);
+  int angle = motors.getAngle();
+  String textLog = "angle = "+String(angle);
+  addStringToMsg(str_ARDUINO_LOG_msg,textLog);
+  ARDUINO_LOG_node.publish( &str_ARDUINO_LOG_msg);
 }
 /**********************ROS SUBSCRIBERS**********************/
 void getPositionResponse( const geometry_msgs::PoseStamped& slamPose) {
