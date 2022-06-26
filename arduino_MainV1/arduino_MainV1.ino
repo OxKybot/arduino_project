@@ -103,8 +103,8 @@ void joyCommandArmRigthCb( const sensor_msgs::Joy& joy) {
   publishLXR();
 }
 void joyGotoAngleCommand( const sensor_msgs::Joy& joy) {
+  //joystick.angle_from_Joymsg(joy);
   publishAngle();
-  joystick.angle_from_Joymsg(joy);
 }
 ros::Subscriber<sensor_msgs::Joy> subJoyCommandMotor("JoyCommandMotor", joyCommandMotorCb );
 ros::Subscriber<sensor_msgs::Joy> subJoyCommandMotorSlow("JoyCommandMotorSlow", joyCommandMotorSlowCb );
