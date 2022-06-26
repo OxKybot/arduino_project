@@ -211,4 +211,5 @@ void loop()
   nh.spinOnce();
   securityTimerMotor.loop();
   motors.loop();
+  delay(10);
 }
