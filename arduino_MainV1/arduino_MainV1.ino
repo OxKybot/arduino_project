@@ -76,7 +76,7 @@ void publishLXR()
 void publishAngle()
 {
 
-  logger.publish_arduino_log("angle"+String(motors.getAngle()));
+  logger.publish_arduino_log("angle = "+String(motors.getAngle()));
 }
 /**********************ROS SUBSCRIBERS**********************/
 void getPositionResponse( const geometry_msgs::PoseStamped& slamPose) {
