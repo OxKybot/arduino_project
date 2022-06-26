@@ -75,9 +75,8 @@ void publishLXR()
 }
 void publishAngle()
 {
-  int angle = motors.getAngle();
-  String textLog = "angle = "+String(angle);
-  addStringToMsg(str_ARDUINO_LOG_msg,textLog);
+
+  addStringToMsg(str_ARDUINO_LOG_msg,"angle");
   ARDUINO_LOG_node.publish( &str_ARDUINO_LOG_msg);
 }
 /**********************ROS SUBSCRIBERS**********************/
