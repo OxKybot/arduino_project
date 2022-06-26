@@ -76,7 +76,7 @@ void publishLXR()
 }
 void publishAngle()
 {
-  addStringToMsg(str_ANGLE_msg,String(motors.getAngle()));
+  addStringToMsg(str_ANGLE_msg,"angle = "+String(motors.getAngle()));
   ANGLE_node.publish( &str_ANGLE_msg);
 }
 /**********************ROS SUBSCRIBERS**********************/
