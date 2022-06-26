@@ -91,7 +91,7 @@ void joyCommandMotorCb( const sensor_msgs::Joy& joy) {
   publishLPOSITION();
 }
 void joyCommandMotorSlowCb( const sensor_msgs::Joy& joy) {
-  joystick.motor_Slow_from_Joymsg(joy);
+  joystick.motor_slow_from_Joymsg(joy);
   publishLPOSITION();
 }
 void joyCommandArmLeftCb( const sensor_msgs::Joy& joy) {
