@@ -195,13 +195,13 @@ void setup() {
   motors.setLogger(logger);
   motors.setTimer(&securityTimerMotor);
   
-  arm = OxKybot_ARM_command();
+ /* arm = OxKybot_ARM_command();
   arm.init();
-  arm.setLogger(logger);
+  arm.setLogger(logger);*/
   
   joystick = OxKybot_JOYSTICK_command();
   joystick.set_motors(motors);
-  joystick.set_arm(arm);
+  //joystick.set_arm(arm);
 
 }
 
