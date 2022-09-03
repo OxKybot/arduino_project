@@ -90,10 +90,6 @@ void joyCommandMotorCb( const sensor_msgs::Joy& joy) {
   joystick.motor_from_Joymsg(joy);
   publishLPOSITION();
 }
-void joyCommandMotorSlowCb( const sensor_msgs::Joy& joy) {
-  joystick.motor_slow_from_Joymsg(joy);
-  publishLPOSITION();
-}
 void joyCommandArmLeftCb( const sensor_msgs::Joy& joy) {
   joystick.axe_from_Joymsg(joy, true);
   publishLXL();
@@ -107,7 +103,6 @@ void joyGotoAngleCommand( const sensor_msgs::Joy& joy) {
   publishAngle();
 }
 ros::Subscriber<sensor_msgs::Joy> subJoyCommandMotor("JoyCommandMotor", joyCommandMotorCb );
-ros::Subscriber<sensor_msgs::Joy> subJoyCommandMotorSlow("JoyCommandMotorSlow", joyCommandMotorSlowCb );
 ros::Subscriber<sensor_msgs::Joy> subJoyCommandArmLeft("JoyCommandArmLeft", joyCommandArmLeftCb );
 ros::Subscriber<sensor_msgs::Joy> subJoyCommandArmRigth("JoyCommandArmRigth", joyCommandArmRigthCb );
 ros::Subscriber<sensor_msgs::Joy> subJoyGotoAngleCommand("JoyGotoAngleCommand", joyGotoAngleCommand );
@@ -171,7 +166,6 @@ void setup() {
   nh.initNode();
   //  nh.serviceClient(pose_client);//FIXME why do the service don't work in rosserial_arduino ???
   nh.subscribe(subJoyCommandMotor);
-  nh.subscribe(subJoyCommandMotorSlow);
   nh.subscribe(subJoyCommandArmLeft);
   nh.subscribe(subJoyCommandArmRigth);
   nh.subscribe(subGetPositionCommand);
